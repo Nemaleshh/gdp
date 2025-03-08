@@ -57,7 +57,8 @@ REQUIRED_FEATURES = [
 def load_model():
     global MODEL
     if MODEL is None:
-        MODEL = joblib.load("models/elastic_net_model.pkl")
+        # Register the custom transformer class
+        MODEL = joblib.load("models/elastic_net_model.pkl", mmap_mode=None)
     return True
 
 @app.route('/api/predict', methods=['POST'])
